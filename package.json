@@ -1,5 +1,7 @@
 {
   "name": "messages",
+  "author": "Nagib Tharani",
+  "version": "0.2",
   "private": true,
   "scripts": {
     "start": "meteor run"

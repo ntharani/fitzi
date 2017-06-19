@@ -10,8 +10,7 @@ if (Meteor.isServer) {
     describe('methods', function() {
       const userId = Random.id();
       const userId2 = 'xyz';
-      let taskId1;
-      let taskId2;
+      let taskId1, taskId2, taskId3;
 	  
       beforeEach( function() {
       
@@ -84,25 +83,34 @@ if (Meteor.isServer) {
 
 if (Meteor.isClient) {
   describe('HomePage', function() {
+    const userId = Random.id();
 
-    beforeEach( function() {      
-      Messages.remove({});
-        ctaskId1 = Messages.insert({
-          text: 'clientTask1',
-          createdAt: new Date(),
-          owner: userId,
-          username: 'tmeasday',
-        });
-        ctaskId2 = Messages.insert({
-          text: 'clientTask2',
-          createdAt: new Date(),
-          owner: userId,
-          username: 'tmeasday',
-        });
+    // beforeEach( function() {      
+    // Messages.remove({});
+    //     ctaskId1 = Messages.insert({
+    //       text: 'clientTask1',
+    //       createdAt: new Date(),
+    //       owner: userId,
+    //       username: 'tmeasday',
+    //     });
+    //     ctaskId2 = Messages.insert({
+    //       text: 'clientTask2',
+    //       createdAt: new Date(),
+    //       owner: userId,
+    //       username: 'tmeasday',
+    //     });
+    // });
+
+
+    it('A DB Insert should be possible client side.', function(){
+      Messages.insert({
+        text: 'clientTask3',
+        createdAt: new Date(),
+        owner: userId,
+        username: 'jack'
+      });
+      assert.equal(Messages.find().count(), 1);
     });
-
-
-    it('A DB Insert should be possible client side.');
 
   })
 }

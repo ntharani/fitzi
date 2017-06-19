@@ -6,8 +6,8 @@ export const Messages = new Mongo.Collection('messages');
  
 if (Meteor.isServer) {
   // Only publish messages that belong to the current user
-    Meteor.publish('messages', function messagesPublication() {
-	return Messages.find({ owner: this.userId });	
+  Meteor.publish('messages', function messagesPublication() {
+		return Messages.find(); //{ owner: this.userId }	
   });
 }
 
@@ -21,10 +21,7 @@ Meteor.methods({
 	console.log("target messageId of request, ", messageOwner, messageOwner._id);
 	
 
-	if (messageOwner.owner === this.userId) {
-		console.log("Message ID belongs to owner - authorized");
-		Messages.remove(messageId)
-	}
+	(messageOwner.owner === this.userId) ?	Messages.remove(messageId) : console.log("Sorry. Not Authorized")
   
   },
 
