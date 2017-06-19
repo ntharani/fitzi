@@ -1,0 +1,31 @@
+<body>
+  <div class="container">
+    <header>
+      <h1>A Message System</h1>
+
+      {{> loginButtons}}
+
+      {{#if currentUser}}
+        <form class="new-task">
+          <input type="text" name="text" placeholder="Type your message here" />
+        </form>
+      {{/if}}
+    </header>
+    <!--
+    <ul>
+            {{#if currentUser}}
+      {{#each messages}}
+        {{> message}}
+	    {{/each}}
+	          {{/if}}
+    </ul>
+-->
+        <ul>
+      {{#each messages}}
+        {{> message}}
+      {{/each}}
+    </ul>
+
+  </div>
+</body>
+
