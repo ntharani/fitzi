@@ -12,9 +12,20 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-    'messages.remove'(messageId) {
+  'messages.remove'(messageId) {
 	check(messageId, String);
-	Messages.remove(messageId);
+
+
+	messageOwner = Messages.findOne({_id: messageId});
+	console.log("messageId is, ", messageId);
+	console.log("target messageId of request, ", messageOwner, messageOwner._id);
+	
+
+	if (messageOwner.owner === this.userId) {
+		console.log("Message ID belongs to owner - authorized");
+		Messages.remove(messageId)
+	}
+  
   },
 
 });

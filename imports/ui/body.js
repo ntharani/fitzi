@@ -13,16 +13,17 @@ Template.body.onCreated(function bodyOnCreated() {
 });
 
 Template.body.helpers({
-    messages() {
+  messages() {
 	const instance = Template.instance();
 	return Messages.find({}, {text:1, createdAt:1});
     },
 });
 
 Template.body.events({
-    'submit .new-message'(event) {
+    'submit .new-task'(event) {
     // Prevent default browser form submit
     event.preventDefault();
+    console.log("triggered");
  
     // Get value from form element
     const target = event.target;
